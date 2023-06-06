@@ -7,9 +7,16 @@ app = Flask(__name__)
 UPLOAD_FOLDER = './pdf_path'
 ALLOWED_EXTENSIONS = {'pdf'}
 
+if not os.path.exists(f'./{UPLOAD_FOLDER}'):
+    os.makedirs(f'./{UPLOAD_FOLDER}')
+else:
+    pass
+
 @app.route('/pdf-extract', methods=['POST'])
 def pdf_text():
 
+
+        
     file = request.files.get('file')
     filename = file.filename
 
@@ -33,4 +40,4 @@ def pdf_text():
 
     
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
